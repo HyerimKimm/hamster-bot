@@ -6,3 +6,14 @@
   height: 100%;
   @include flex(column, center, center);
 }
+
+.button {
+  @include flex(row, center, center);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.icon {
+  color: $color-brand-dark;
+}

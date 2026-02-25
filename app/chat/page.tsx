@@ -1,9 +1,12 @@
 "use client";
 
-import Image from "next/image";
-import styles from "./page.module.scss";
-import { Input } from "@/src/shared/ui/input";
 import { useState } from "react";
+import Image from "next/image";
+
+import { Input } from "@/src/shared/ui/input";
+import SendIcon from "@/src/shared/icon/SendIcon";
+
+import styles from "./page.module.scss";
 
 export default function ChatPage() {
   const [message, setMessage] = useState("");
@@ -31,8 +34,8 @@ export default function ChatPage() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button type="submit" onClick={handleSubmit}>
-          전송
+        <button type="submit" onClick={handleSubmit} className={styles.button}>
+          <SendIcon className={styles.icon} />
         </button>
       </div>
     </main>
