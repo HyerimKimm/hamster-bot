@@ -30,7 +30,7 @@ export async function POST(
     return NextResponse.json(
       {
         success: false,
-        message: "OpenAI 연결에 실패했습니다.",
+        message: `OpenAI 연결에 실패했습니다 : ${e}`,
         data: null,
       },
       { status: 500 },

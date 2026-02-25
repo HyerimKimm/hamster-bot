@@ -1,8 +1,20 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./page.module.scss";
 import { Input } from "@/src/shared/ui/input";
+import { useState } from "react";
 
 export default function ChatPage() {
+  const [message, setMessage] = useState("");
+
+  function handleSubmit() {
+    fetch("/api/chat", {
+      method: "POST",
+      body: JSON.stringify({ message }),
+    });
+  }
+
   return (
     <main className={styles.page_wrap}>
       <Image
@@ -14,8 +26,14 @@ export default function ChatPage() {
         style={{ width: 100, height: "auto" }}
       />
       <div>
-        <Input placeholder="메시지를 입력하세요." />
-        <button type="submit">전송</button>
+        <Input
+          placeholder="메시지를 입력하세요."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <button type="submit" onClick={handleSubmit}>
+          전송
+        </button>
       </div>
     </main>
   );
