@@ -14,7 +14,7 @@ export default function ChatPage() {
         style={{ width: 100, height: "auto" }}
       />
       <div>
-        <Input />
+        <Input placeholder="메시지를 입력하세요." />
         <button type="submit">전송</button>
       </div>
     </main>
