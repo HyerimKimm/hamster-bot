@@ -1,0 +1,9 @@
+@use "@/src/styles/_mixins.scss" as *;
+@use "@/src/styles/_variables.scss" as *;
+
+.input {
+  padding: 0 10px;
+  border: 1px solid $color-gray-300;
+  border-radius: 8px;
+  color: $color-gray-900;
+}
