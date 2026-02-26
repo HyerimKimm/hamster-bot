@@ -3,34 +3,57 @@
 import { useState } from "react";
 import Image from "next/image";
 
-import { Input } from "@/src/shared/ui/input";
 import SendIcon from "@/src/shared/icon/SendIcon";
 
 import styles from "./page.module.scss";
 
 export default function ChatPage() {
+  const [messageList, setMessageList] = useState<
+    { role: "user" | "assistant"; content: string }[]
+  >([]);
   const [message, setMessage] = useState("");
 
   function handleSubmit() {
+    if (!message) return;
+
     fetch("/api/chat", {
       method: "POST",
       body: JSON.stringify({ message }),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setMessageList([
+            ...messageList,
+            { role: "user", content: message },
+            {
+              role: "assistant",
+              content: data.data,
+            },
+          ]);
+        }
+      });
   }
 
   return (
     <main className={styles.page_wrap}>
-      <Image
-        src="/images/hamster.png"
-        alt="hamster"
-        width={80}
-        height={80}
-        priority
-        style={{ width: 100, height: "auto" }}
-      />
-      <div>
-        <Input
-          placeholder="메시지를 입력하세요."
+      {/* 타이틀 */}
+      <div className={styles.titleWrap}>
+        <Image
+          src="/images/hamster.png"
+          alt="hamster"
+          width={80}
+          height={80}
+          priority
+          style={{ width: 100, height: "auto" }}
+        />
+        <h1 className={styles.title}>햄스터봇과 떠들기</h1>
+      </div>
+      {/* 인풋 */}
+      <div className={styles.input_wrap}>
+        <input
+          className={styles.input}
+          placeholder="무엇이든 물어보세요!"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />

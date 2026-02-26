@@ -5,15 +5,61 @@
   width: 100%;
   height: 100%;
   @include flex(column, center, center);
+  gap: 36px;
+}
+
+.titleWrap {
+  @include flex(column, center, center);
+  gap: 12px;
+
+  > .title {
+    font-size: 22px;
+    background: $gradient-title;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.3;
+    letter-spacing: -0.3px;
+    text-shadow: none;
+    position: relative;
+  }
+}
+
+.input_wrap {
+  @include flex(row, center, center);
+  gap: 12px;
+  padding: 4px 8px 4px 16px;
+  max-width: 100vw;
+  width: 400px;
+  border-radius: 28px;
+  background-color: $color-backdrop-white;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  height: 100%;
+  background-color: transparent;
+
+  &::placeholder {
+    color: $color-gray-500;
+  }
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .button {
   @include flex(row, center, center);
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
   border-radius: 50%;
+  background: $gradient-title;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .icon {
-  color: $color-brand-dark;
+  color: $color-white;
 }
