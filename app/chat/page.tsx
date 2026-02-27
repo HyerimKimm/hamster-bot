@@ -6,11 +6,11 @@ import Image from "next/image";
 import SendIcon from "@/src/shared/icon/SendIcon";
 
 import styles from "./page.module.scss";
+import { GPTMessageType } from "@/src/shared/type/gpt";
 
 export default function ChatPage() {
-  const [messageList, setMessageList] = useState<
-    { role: "user" | "assistant"; content: string }[]
-  >([]);
+  const [messageList, setMessageList] = useState<GPTMessageType[]>([]);
+
   const [message, setMessage] = useState("");
 
   function handleSubmit() {
@@ -18,7 +18,7 @@ export default function ChatPage() {
 
     fetch("/api/chat", {
       method: "POST",
-      body: JSON.stringify({ message }),
+      body: JSON.stringify({ message, messageList }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -31,6 +31,7 @@ export default function ChatPage() {
               content: data.data,
             },
           ]);
+          setMessage("");
         }
       });
   }
