@@ -16,27 +16,33 @@ export default function ChatPage() {
 
   const [message, setMessage] = useState("");
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if (!message) return;
 
-    fetch("/api/chat", {
+    const newMessageList: GPTMessageType[] = [
+      ...messageList,
+      {
+        role: "user",
+        content: message,
+      },
+    ];
+
+    setMessageList(newMessageList);
+
+    const res = await fetch("/api/chat", {
       method: "POST",
       body: JSON.stringify({ message, messageList }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          setMessageList([
-            ...messageList,
-            { role: "user", content: message },
-            {
-              role: "assistant",
-              content: data.data,
-            },
-          ]);
-          setMessage("");
-        }
-      });
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      setMessageList([
+        ...newMessageList,
+        { role: "assistant", content: data.data },
+      ]);
+      setMessage("");
+    }
   }
 
   return (
