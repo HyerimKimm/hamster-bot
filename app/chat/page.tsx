@@ -3,10 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 
+import { GPTMessageType } from "@/src/shared/type/gpt";
+
 import SendIcon from "@/src/shared/icon/SendIcon";
 
 import styles from "./page.module.scss";
-import { GPTMessageType } from "@/src/shared/type/gpt";
 
 export default function ChatPage() {
   const [messageList, setMessageList] = useState<GPTMessageType[]>([]);
@@ -39,19 +40,27 @@ export default function ChatPage() {
   return (
     <main className={styles.page_wrap}>
       {/* 타이틀 */}
-      <div className={styles.titleWrap}>
+      <div
+        className={`${styles.titleWrap} ${messageList.length > 0 ? styles.active : ""}`}
+      >
         <Image
-          src="/images/hamster.png"
+          src={
+            messageList.length > 0
+              ? "/images/hamster_face.png"
+              : "/images/hamster.png"
+          }
           alt="hamster"
           width={80}
           height={80}
           priority
-          style={{ width: 100, height: "auto" }}
+          className={`${styles.image} ${messageList.length > 0 ? styles.active : ""}`}
         />
         <h1 className={styles.title}>햄스터봇과 떠들기</h1>
       </div>
       {/* 인풋 */}
-      <div className={styles.input_wrap}>
+      <div
+        className={`${styles.input_wrap} ${messageList.length > 0 ? styles.active : ""}`}
+      >
         <input
           className={styles.input}
           placeholder="무엇이든 물어보세요!"
