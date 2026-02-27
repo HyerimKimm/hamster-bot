@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 
+import ChatList from "@/src/widgets/chat-list/ChatList";
+
 import { GPTMessageType } from "@/src/shared/type/gpt";
 
 import SendIcon from "@/src/shared/icon/SendIcon";
@@ -46,7 +48,7 @@ export default function ChatPage() {
         <Image
           src={
             messageList.length > 0
-              ? "/images/hamster_face.png"
+              ? "/images/hamster-face.png"
               : "/images/hamster.png"
           }
           alt="hamster"
@@ -57,6 +59,7 @@ export default function ChatPage() {
         />
         <h1 className={styles.title}>햄스터봇과 떠들기</h1>
       </div>
+      <ChatList messageList={messageList} />
       {/* 인풋 */}
       <div
         className={`${styles.input_wrap} ${messageList.length > 0 ? styles.active : ""}`}

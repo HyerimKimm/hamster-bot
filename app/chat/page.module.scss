@@ -11,6 +11,7 @@
 .titleWrap {
   @include flex(column, center, center);
   gap: 12px;
+  transition: all 0.3s ease;
 
   &.active {
     width: 100%;

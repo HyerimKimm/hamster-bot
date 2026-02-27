@@ -1,0 +1,22 @@
+@use "@/src/styles/_mixins.scss" as *;
+@use "@/src/styles/_variables.scss" as *;
+
+.chat_list_wrap {
+  width: 100%;
+  max-width: 600px;
+
+  @include flex(column, flex-start, center);
+  gap: 12px;
+
+  transition: all 0.3s ease;
+
+  &.no_message {
+    height: 0px;
+    overflow-y: hidden;
+  }
+
+  &.active {
+    height: auto;
+    flex: 1;
+  }
+}
