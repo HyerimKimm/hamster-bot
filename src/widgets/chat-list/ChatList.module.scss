@@ -2,7 +2,7 @@
 @use "@/src/styles/_variables.scss" as *;
 
 .chat_list_wrap {
-  width: 100%;
+  width: calc(100% - 24px);
   max-width: 600px;
 
   @include flex(column, flex-start, center);
