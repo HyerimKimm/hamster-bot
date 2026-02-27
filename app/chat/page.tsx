@@ -63,7 +63,11 @@ export default function ChatPage() {
           priority
           className={`${styles.image} ${messageList.length > 0 ? styles.active : ""}`}
         />
-        <h1 className={styles.title}>햄스터봇과 떠들기</h1>
+        <h1
+          className={`${styles.title} ${messageList.length > 0 ? styles.active : ""}`}
+        >
+          햄스터봇과 떠들기
+        </h1>
       </div>
       <ChatList messageList={messageList} />
       {/* 인풋 */}
