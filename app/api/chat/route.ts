@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import type { Response } from "@/src/shared/type/response";
-import { openai } from "@/src/shared/lib/openai";
+import { OpenAIClient, SYSTEM_PROMPT } from "@/src/shared/lib/openai";
 import { GPTMessageType } from "@/src/shared/type/gpt";
 
 export async function POST(
@@ -11,6 +11,7 @@ export async function POST(
     const { message, messageList = [] as GPTMessageType[] } = await req.json();
 
     const input = [
+      { role: "system", content: SYSTEM_PROMPT },
       ...messageList.map((item: GPTMessageType) => ({
         role: item.role,
         content: item.content,
@@ -18,7 +19,7 @@ export async function POST(
       { role: "user", content: message },
     ];
 
-    const response = await openai.responses.create({
+    const response = await OpenAIClient.responses.create({
       model: "gpt-4.1-mini", // 가성비 좋음
       input: input,
     });
