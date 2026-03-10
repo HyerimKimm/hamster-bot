@@ -9,7 +9,7 @@ export async function POST(
 ): Promise<NextResponse<Response<string | null>>> {
   try {
     const { message, messageList = [] as GPTMessageType[] } = await req.json();
-
+    console.log( process.env.OPENAI_API_KEY)
     const input = [
       { role: "system", content: SYSTEM_PROMPT },
       ...messageList.map((item: GPTMessageType) => ({
