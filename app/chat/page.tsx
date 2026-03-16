@@ -10,6 +10,7 @@ import { GPTMessageType } from "@/src/shared/type/gpt";
 import SendIcon from "@/src/shared/icon/SendIcon";
 
 import styles from "./page.module.scss";
+import Title from "@/src/widgets/title/Title";
 
 export default function ChatPage() {
   const [messageList, setMessageList] = useState<GPTMessageType[]>([]);
@@ -48,27 +49,8 @@ export default function ChatPage() {
   return (
     <main className={styles.page_wrap}>
       {/* 타이틀 */}
-      <div
-        className={`${styles.titleWrap} ${messageList.length > 0 ? styles.active : ""}`}
-      >
-        <Image
-          src={
-            messageList.length > 0
-              ? "/images/hamster-face.png"
-              : "/images/hamster.png"
-          }
-          alt="hamster"
-          width={80}
-          height={80}
-          priority
-          className={`${styles.image} ${messageList.length > 0 ? styles.active : ""}`}
-        />
-        <h1
-          className={`${styles.title} ${messageList.length > 0 ? styles.active : ""}`}
-        >
-          햄스터봇과 떠들기
-        </h1>
-      </div>
+      <Title messageList={messageList} />
+      {/* 채팅 리스트 */}
       <ChatList messageList={messageList} />
       {/* 인풋 */}
       <div

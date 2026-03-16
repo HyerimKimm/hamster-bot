@@ -5,6 +5,7 @@ import SendIcon from "@/src/shared/icon/SendIcon";
 import styles from "./page.module.scss";
 import { useState } from "react";
 import ChatList from "@/src/widgets/chat-list/ChatList";
+import Title from "@/src/widgets/title/Title";
 
 export default function StreamPage() {
   const [message, setMessage] = useState("");
@@ -49,8 +50,11 @@ export default function StreamPage() {
 
   return (
     <main className={styles.page_wrap}>
+      {/* 타이틀 */}
+      <Title messageList={messageList} />
+      {/* 채팅 리스트 */}
       <ChatList messageList={messageList} />
-      {/* {response} */}
+      {/* 인풋 */}
       <div className={styles.input_wrap}>
         <input
           className={styles.input}
