@@ -20,7 +20,8 @@ export async function POST(
     ];
 
     const response = await OpenAIClient.responses.create({
-      model: "gpt-4.1-mini", // 가성비 좋음
+      model: "gpt-5-mini", // 가성비 좋음
+      max_output_tokens: 1000, // 응답으로 나올 수 있는 최대 토큰 수 상한(보이는 출력 + reasoning 토큰 포함). 길이 제한용
       input: input,
     });
 
